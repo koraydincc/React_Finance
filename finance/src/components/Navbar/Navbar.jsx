@@ -1,35 +1,23 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { useFetchLeaguesQuery } from '../../store';
+import React from 'react';
+import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { useFetchUsersQuery } from '../../store';
 import { Skeleton } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setSelectedLeague } from '../../store/reducers/leagueSlice';
 import { Link } from 'react-router-dom';
 
 function NavScrollExample() {
-    const { data, error, isLoading } = useFetchLeaguesQuery();
+    const { data, error, isLoading } = useFetchUsersQuery();
     const dispatch = useDispatch();
 
-    const handleLeagueClick = (league) => {
-        console.log("Selected league:", league);
-        dispatch(setSelectedLeague(league));
-    };
-
-    const renderData = () => {
+    const renderUserData = () => {
         if (isLoading) {
             return <Skeleton active size='large' style={{ width: '100%', height: '500px' }} />;
         } else if (error) {
             return <div>Error: {error.message}</div>;
         } else {
-            return data.result.map((league, index) => (
-                <NavDropdown.Item key={index} onClick={() => handleLeagueClick(league)}>
-                    <Link to={`${league.key}`}>
-                        {league.league}
-                    </Link>
+            return data.map((user, index) => (
+                <NavDropdown.Item key={index}>
+                    <Link to={`/user/${user.id}`}>{user.name}</Link>
                 </NavDropdown.Item>
             ));
         }
@@ -38,28 +26,27 @@ function NavScrollExample() {
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="#">SporHaberX</Navbar.Brand>
+                <Navbar.Brand href="#">Kişisel Finans Takip</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-                        <Nav.Link href="#action1">Ansayfa</Nav.Link>
-                        <Nav.Link href="#action2">Link</Nav.Link>
-                        <NavDropdown title="Ligler" id="navbarScrollingDropdown">
-                            {renderData()}
+                        <Nav.Link as={Link} to="/">Anasayfa</Nav.Link>
+                        <NavDropdown title="Hesaplar" id="navbarScrollingDropdown">
+                            <NavDropdown.Item as={Link} to="/banka-hesaplari">Banka Hesapları</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/kredi-kartlari">Kredi Kartları</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as={Link} to="/diger-hesaplar">Diğer Hesaplar</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link href="#" disabled>
-                            Link
-                        </Nav.Link>
+                        <NavDropdown title="Bütçeler" id="navbarScrollingDropdown">
+                            <NavDropdown.Item as={Link} to="/gelirler">Gelirler</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/harcamalar">Harcamalar</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item as={Link} to="/bütçe-oluştur">Bütçe Oluştur</NavDropdown.Item>
+                        </NavDropdown>
+                        <Nav.Link as={Link} to="/raporlar-analizler">Raporlar ve Analizler</Nav.Link>
+                        <Nav.Link as={Link} to="/ayarlar">Ayarlar</Nav.Link>
+                        <Nav.Link as={Link} to="/çıkış-yap">Çıkış Yap</Nav.Link>
                     </Nav>
-                    <Form className="d-flex">
-                        <Form.Control
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                        <Button variant="outline-success">Search</Button>
-                    </Form>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

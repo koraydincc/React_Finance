@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
-import { footballApi } from './apis/footballApi'
+import { usersApi } from './apis/api'
 
 export const store = configureStore({
     reducer: {
-        [footballApi.reducerPath]: footballApi.reducer
+        [usersApi.reducerPath]: usersApi.reducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(footballApi.middleware)
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(usersApi.middleware)
 });
 
 setupListeners(store.dispatch)
 
-export const {useFetchLeaguesQuery} = footballApi
+export const {useFetchUsersQuery} = usersApi
