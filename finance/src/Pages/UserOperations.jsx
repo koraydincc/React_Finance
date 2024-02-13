@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GoalKings() {
+function UserOperations() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function GoalKings() {
   )
 }
 
-export default GoalKings
+export default UserOperations

@@ -5,16 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store";
-import Layout from "./Layout/Layout";
+import Layouts from "./Layout/Layouts";
 import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <Layout>
+      <Layouts>
         <App />
-      </Layout>
+      </Layouts>
     </Provider>
   </BrowserRouter>
 );

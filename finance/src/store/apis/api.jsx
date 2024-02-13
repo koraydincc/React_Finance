@@ -1,4 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { faker } from '@faker-js/faker';
+import { nanoid } from '@reduxjs/toolkit';
+
 
 const pause = (duration) => {
     return new Promise((resolve) => {
@@ -18,13 +21,40 @@ const usersApi = createApi({
     endpoints(builder){
         return {
             fetchUsers: builder.query({
-                providesTags:['Users'],
+                providesTags:['User'],
                 query: () => {
                     return {
                         url: '/users',
                         method: 'GET'
                        
                     };
+                }
+            }),
+            addUser: builder.mutation({
+                invalidatesTags: () => {
+                    return [{type: 'User'}]
+                },
+                query: () => {
+                    return {
+                        url: '/users',
+                        method: 'POST',
+                        body: {
+                            id: nanoid(),
+                            name: faker.person.fullName()
+                        }
+                    }
+                }
+
+            }),
+            removeUser: builder.mutation({
+                invalidatesTags: () => {
+                    return [{type: 'User'}]
+                },
+                query: (user) => {
+                    return {
+                        url: `/users/${user.id}`,
+                        method:'DELETE'
+                    }
                 }
             })
         };
@@ -33,4 +63,4 @@ const usersApi = createApi({
 
 export { usersApi };
 
-export const { useFetchUsersQuery } = usersApi;
+export const { useFetchUsersQuery, useAddUserMutation, useRemoveUserMutation} = usersApi;

@@ -11,4 +11,4 @@ export const store = configureStore({
 
 setupListeners(store.dispatch)
 
-export const {useFetchUsersQuery} = usersApi
+export const {useFetchUsersQuery, useAddUserMutation, useRemoveUserMutation} = usersApi

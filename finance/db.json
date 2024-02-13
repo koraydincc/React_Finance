@@ -1,6 +1,52 @@
 {
-    "users": [{
-        "id": 1,
-        "name":"Koray"
-}]
+  "users": [
+    {
+      "id": "d0o62xVyMOteTZ5oHtHt6",
+      "name": "Home Loan Account"
+    },
+    {
+      "id": "4pXf_m6cN3hhLsDjk42Pe",
+      "name": "Credit Card Account"
+    },
+    {
+      "id": "MDMOM7VmpqFHJDLTd4hU1",
+      "name": "Dexter West"
+    },
+    {
+      "id": "uMrJ7rG-Gmsny4ycqvXn2",
+      "name": "Margie Bergstrom"
+    },
+    {
+      "id": "jxeM4ZsYjHv7eW0tigVbi",
+      "name": "Earnest Gulgowski III"
+    },
+    {
+      "id": "ZiOy-qkGNB9rs_mWpqFiF",
+      "name": "Vicky Bashirian"
+    },
+    {
+      "id": "DcbxR1_Igic_-LNbVZN5X",
+      "name": "Michele Herman"
+    },
+    {
+      "id": "fF0TT7SmxA-MqpaL963LY",
+      "name": "Lynda Lakin"
+    },
+    {
+      "id": "tXRusqoDtMSQgTPqlnvLn",
+      "name": "Valerie Fahey"
+    },
+    {
+      "id": "zTIRiTqD0E7nKztw-KRPG",
+      "name": "Dana Schiller"
+    },
+    {
+      "id": "RnD7RxUPMJt7ix_Sr3CuY",
+      "name": "Martha Abshire"
+    },
+    {
+      "id": "zp371Lzbjvn8i0bSKHRXQ",
+      "name": "Edward Cummings"
+    }
+  ]
 }
